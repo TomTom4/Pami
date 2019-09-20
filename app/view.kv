@@ -1,0 +1,82 @@
+#:kivy 1.11.1
+
+<LoginScreen>:
+	AnchorLayout:
+		BoxLayout:
+			size_hint:0.5,0.8
+			anchor_y:'bottom'
+			orientation: "vertical"
+			spacing: 20
+			Label:
+				font_size: 70
+				text: "Login"
+
+			TextInput:
+				id: imap_server_url
+				hint_text: "imap_server_url"
+				heigth: self.minimum_height
+				multiline: False
+	
+			TextInput:
+				id: email_address
+				hint_text: "your email address"
+				multiline: False
+	
+			TextInput:
+				id: passwd
+				password: True
+				multiline: False
+				hint_text: "password"
+			Button:
+				font_size: 40
+				text: "log in"
+				on_press:
+					root.login()
+					#root.manager.transition.direction = 'left'
+					#root.manager.current = 'mailbox'
+<MailBox>:
+	on_press:root.select_mailbox(root.text)
+
+<MailScreen>:
+	BoxLayout:
+		orientation:"vertical"
+		width:root.width
+		height:root.height
+		ActionBar:
+			ActionView:
+				use_separator: True
+				ActionPrevious:
+					title: 'Action Bar'
+					with_previous: False
+				ActionButton:
+					important: True
+					text: 'Important'
+				ActionButton:
+					text: 'Btn2'
+				ActionButton:
+					text: 'Btn3'
+				ActionGroup:
+					text: 'Group1'
+					ActionButton:
+						text: 'Btn5'
+					ActionButton:
+						text: 'Btn6'
+
+		BoxLayout:
+			orientation:'horizontal'
+			BoxLayout:
+				size_hint:0.3,1
+				orientation:'vertical'
+				Label:
+					size_hint:1,0.2 
+					text:"mail boxes"
+				Button:
+					text:"Log out"
+					on_press:
+						root.logout()
+						root.manager.transition.direction = 'right'
+						root.manager.current = 'login'
+
+			TextInput:
+				text:"textInput"
+
