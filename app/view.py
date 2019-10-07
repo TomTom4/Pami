@@ -35,7 +35,7 @@ class MailBox(Button):
         self.text = kwargs['text']
 
     def select(self):
-        self.controller.select(self.text)
+        print(self.controller.search_emails(self.text))
 
 
 class MailBoxContainer(BoxLayout):
