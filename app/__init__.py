@@ -1,17 +1,9 @@
-'''from sqlalchemy.ext.declarative import declarative_base, declared_attr
-from sqlalchemy import Column, Integer, String
+from flask import Flask
+from flask_cors import CORS
 
-# declaration of the base class
+app = Flask(__name__)
 
-# declaration of a Mixin table to ease model development
-class Base(object):
-	
-	@declared_attr
-	def __tablename__(cls):
-		return cls.__name__.lower()
-
-	id =  Column(Integer, primary_key=True)
+cors = CORS(app, ressources={r"/api/*": {"origins": '*'}})
 
 
-Base = declarative_base(cls=Base)
-'''
+from app import routes
